@@ -1,7 +1,9 @@
-from dataclasses import dataclass
-from Options import PerGameCommonOptions, Range
 from worlds.AutoWorld import World
 from BaseClasses import Item, ItemClassification, Location, Region
+from .options import SonicUnleashedOptions
+import typing
+
+typing.NamedTuple
 
 BASE_ID = 5_500_000
 item_table = {
@@ -19,18 +21,6 @@ location_table = {
     "zone 7": BASE_ID + 6,
     "zone 8": BASE_ID + 7
 }
-
-class TotalMedals(Range):
-    """
-    Le nombre de médailes nécéssaires pour terminer l'archipelago
-    """
-    range_start = 1
-    range_end = 8
-    default = 6
-
-@dataclass
-class SonicUnleashedOptions(PerGameCommonOptions):
-    total_medals: TotalMedals
 
 class SonicUnleashedItem(Item):
     game = "Sonic Unleashed"
