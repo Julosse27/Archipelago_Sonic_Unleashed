@@ -1,14 +1,23 @@
 from dataclasses import dataclass
-from Options import PerGameCommonOptions, Range
+from Options import PerGameCommonOptions, Range, Toggle, Choice
 
-class TotalMedals(Range):
+class TotalSunMedals(Range):
     """
-    Le nombre de médailes nécéssaires pour terminer l'archipelago
+    Le nombre de médailles de soleil nécéssaires pour terminer l'archipelago
     """
-    range_start = 1
-    range_end = 8
-    default = 6
+    range_start = 50
+    range_end = 200
+    default = 120
+
+class TotalMoonMedals(Range):
+    """
+    Le nombre de médailles de lune pour terminer l'archipelago
+    """
+    range_start = 50
+    range_end = 200
+    default = 80
 
 @dataclass
 class SonicUnleashedOptions(PerGameCommonOptions):
-    total_medals: TotalMedals
+    total_sun_medals: TotalSunMedals
+    total_moon_medals: TotalMoonMedals
