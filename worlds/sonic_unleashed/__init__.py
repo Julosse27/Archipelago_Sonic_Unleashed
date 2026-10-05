@@ -1,3 +1,6 @@
+from collections.abc import Mapping
+from typing import Any
+
 from worlds.AutoWorld import World
 from BaseClasses import Item, ItemClassification, Location, Region, Entrance
 from .options import SonicUnleashedOptions
@@ -62,3 +65,14 @@ class SonicUnleashedWorld(World):
 
     def set_rules(self) -> None:
         self.multiworld.completion_condition[self.player] = lambda state: True
+
+    def fill_slot_data(self) -> Mapping[str, Any]:
+        return {
+            "seed_name": self.multiworld.seed_name,
+            "player_name": self.multiworld.get_player_name(self.player),
+            "player_id": self.player,
+            "client_version": self.required_client_version,
+            "item_name_to_id": self.item_name_to_id.copy(),
+            "item_id_to_name": {code: name for name, code in self.item_name_to_id.items()},
+            "total_medals": (self.options.total_sun_medals, self.options.total_moon_medals)
+        }
